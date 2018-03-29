@@ -56,6 +56,8 @@ void FileViewer::execute_command(char command, bool & done)
             getline(cin, file_name);
             if (!buffer_.open(file_name))
                 error_message_ = "Could not open " + file_name;
+                else
+                    history_.push_back(file_name);
             break;
         }
 
@@ -75,8 +77,12 @@ void FileViewer::execute_command(char command, bool & done)
 
         case 'b':{
             cout << "History: " << to_string(history_.size()) << endl;
+            for (int i = 0; i< history_.size();i++)
+            {
+                cout << "Number: " << i+1 << ":" << history_[i] << endl;
+            }
             history_.pop_back();
-            string file_name = history_[history_.size()];
+            string file_name = history_[history_.size()-1];
             if(!buffer_.open(file_name))
                 error_message_ = "Could not open " + file_name;
             break;
