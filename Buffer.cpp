@@ -113,6 +113,7 @@ bool Buffer::open(const string & new_file_name)
             }
         }
     }
+    v_lines_.push_back(line); //loads last line when end of file is reached, might be issue if exact length?
 
     file_name_ = new_file_name;
     ix_top_line_ = 0;
