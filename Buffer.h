@@ -23,7 +23,8 @@ public:
 ///ADD METHOD
     void set_window_length(int l) { window_length_ = l; }
     void set_top_line(int tl) {ix_top_line_ = tl;}
-    const std::string & link_name(const int number) const {return v_links_[number];}
+    const std::string & link_name(const int number) const { return v_links_[number];}
+    const int link_size() const { return v_links_.size();}
 
 private:
     std::vector<std::string> v_lines_;
