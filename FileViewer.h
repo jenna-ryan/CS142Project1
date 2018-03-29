@@ -28,7 +28,7 @@ private:
     int window_length_;
     std::string error_message_;
     std::string string_search_;
-    std::vector <std::string> history_;
+    //std::vector <std::string> history_;
 
 };
 

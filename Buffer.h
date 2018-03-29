@@ -33,6 +33,7 @@ private:
     int window_height_;
     int window_length_;
     void anchor(std::string & link, std::string & info);
+    std::vector <std::string> history_;
 };
 
 inline void Buffer::move_to_next_page()

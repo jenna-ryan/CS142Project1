@@ -56,8 +56,7 @@ void FileViewer::execute_command(char command, bool & done)
             getline(cin, file_name);
             if (!buffer_.open(file_name))
                 error_message_ = "Could not open " + file_name;
-                else
-                    history_.push_back(file_name);
+
             break;
         }
 

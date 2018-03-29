@@ -51,6 +51,8 @@ bool Buffer::open(const string & new_file_name)
     if (!file)
         return false;
 
+    history_.push_back(new_file_name);
+
     v_lines_.clear();
     v_links_.clear();
     // Note: the vector is cleared only after we know the file
