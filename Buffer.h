@@ -24,6 +24,9 @@ public:
     void set_top_line(int tl) {ix_top_line_ = tl;}
     const std::string & link_name(const int number) const { return v_links_[number];}
     const int link_size() const { return v_links_.size();}
+    void add_history(const std::string & name) { history_.push_back(name);}
+    std::vector<std::string> get_history() { return history_ ;}
+
 
 private:
     std::vector<std::string> v_lines_;
@@ -34,6 +37,7 @@ private:
     int window_length_;
     void anchor(std::string & link, std::string & info);
     std::vector <std::string> history_;
+
 };
 
 inline void Buffer::move_to_next_page()

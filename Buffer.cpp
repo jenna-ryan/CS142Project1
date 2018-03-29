@@ -51,7 +51,7 @@ bool Buffer::open(const string & new_file_name)
     if (!file)
         return false;
 
-    history_.push_back(new_file_name);
+    add_history(new_file_name);
 
     v_lines_.clear();
     v_links_.clear();

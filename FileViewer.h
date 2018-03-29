@@ -21,15 +21,12 @@ public:
 private:
     void display();
     void execute_command(char command, bool & done);
-
     Buffer buffer_;
     int window_height_;
-///MODIFICATION
     int window_length_;
     std::string error_message_;
     std::string string_search_;
-    //std::vector <std::string> history_;
-
+    std::vector <std::string> history_;
 };
 
 #endif

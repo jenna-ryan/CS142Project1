@@ -65,8 +65,8 @@ void FileViewer::execute_command(char command, bool & done)
             int link_number;
             cin >> link_number;
 	    if (link_number > buffer_.link_size() || link_number < 1){
-		error_message_ = "Invalid link number";
-		break;
+            error_message_ = "Invalid link number";
+            break;
 	    }
             string link = buffer_.link_name(link_number - 1);
             if (!buffer_.open(link))
@@ -75,11 +75,13 @@ void FileViewer::execute_command(char command, bool & done)
         }
 
         case 'b':{
+            history_ = buffer_.get_history();
             cout << "History: " << to_string(history_.size()) << endl;
-            for (int i = 0; i< history_.size();i++)
-            {
-                cout << "Number: " << i+1 << ":" << history_[i] << endl;
-            }
+//            for (int i = 0; i< history_.size();i++)
+//            {
+//                cout << "Number: " << i+1 << ":" << history_[i] << endl;
+//            }
+//            cin.get();
             history_.pop_back();
             string file_name = history_[history_.size()-1];
             if(!buffer_.open(file_name))
