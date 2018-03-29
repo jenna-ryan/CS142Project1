@@ -65,32 +65,51 @@ bool Buffer::open(const string & new_file_name)
     string line;
     while(file >> word)
     {
-	if (word == "<a"){
-	    file >> word >> word2;
-	    if (word2[word2.size() - 1] == '>'){
-		anchor(word, word2);
-	    }
-	    else
-	    	file.unget();
-	}
-        if (word.size() > window_length_ )
+        //deals with anchors
+        if (word == "<a")
         {
-            if(!line.empty())
-                v_lines_.push_back(line);
-            v_lines_.push_back(word);
+            file >> word >> word2;
+            if (word2[word2.size() - 1] == '>')
+            {
+                anchor(word, word2);    //passed by reference, changes to appropriate word
+            }
+            else
+                file.unget();
+        }
+        //new line
+        if(word == "<br>")
+        {
+            v_lines_.push_back(line);
             line.clear();
-
+        }
+        else if(word == "<p>")
+        {
+            v_lines_.push_back(line);
+            v_lines_.push_back("");
+            line.clear();
         }
         else
         {
-            if(line.size() + word.size() > window_length_)
+
+            if (word.size() > window_length_ )
             {
+                if(!line.empty())
                     v_lines_.push_back(line);
-                    line = word + ' ';
+                v_lines_.push_back(word);
+                line.clear();
+
             }
-            else if(line.size() + word.size() <= window_length_)
+            else
             {
-                line = line + word + ' ';
+                if(line.size() + word.size() > window_length_)
+                {
+                        v_lines_.push_back(line);
+                        line = word + ' ';
+                }
+                else if(line.size() + word.size() <= window_length_)
+                {
+                    line = line + word + ' ';
+                }
             }
         }
     }

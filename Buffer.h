@@ -20,7 +20,6 @@ public:
     void move_to_previous_page();
     bool open(const std::string & file_name);
     void set_window_height(int h) { window_height_ = h; }
-///ADD METHOD
     void set_window_length(int l) { window_length_ = l; }
     void set_top_line(int tl) {ix_top_line_ = tl;}
     const std::string & link_name(const int number) const { return v_links_[number];}

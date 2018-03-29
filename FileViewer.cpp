@@ -102,7 +102,6 @@ void FileViewer::run()
     cout << '\n';
     buffer_.set_window_height(window_height_);
 
-///ADD LENGTH
     cout << "Window length? ";
     cin >> window_length_;
     cin.get();  // '\n'

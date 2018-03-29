@@ -1,8 +1,8 @@
-<a test.cpp description> After a few computer science courses, students may start to
+<a test.cpp description> After <br> a <br> few computer science courses, students may start to
 get the feeling that programs can always be written to
 solve any computational problem.  Writing the program may
-be hard work.  For example, it may involve learning a
-difficult technique.  And many hours of debugging.  But
+be hard work. <br> For example, <a Buffer.cpp yeet> it may involve learning a
+difficult technique. <p> And many hours of debugging.  But
 with enough time and effort, the program can be written.
 So it may come as a surprise that this is not the case:
 there are computational problems for which no program
