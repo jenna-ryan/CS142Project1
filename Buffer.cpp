@@ -61,10 +61,18 @@ bool Buffer::open(const string & new_file_name)
 //        v_lines_.push_back(line);
 ///READS IN INDIVIDUAL WORDS
     string word;
+    string word2;
     string line;
     while(file >> word)
     {
-
+	if (word == "<a"){
+	    file >> word >> word2;
+	    if (word2[word2.size() - 1] == '>'){
+		anchor(word, word2);
+	    }
+	    else
+	    	file.unget();
+	}
         if (word.size() > window_length_ )
         {
             if(!line.empty())
@@ -92,22 +100,9 @@ bool Buffer::open(const string & new_file_name)
     return true;
 }
 
-void Buffer::anchor(string & line)
+void Buffer::anchor(string & link, string & info)
 {
-    	string link;
-    	string info;
-    	size_t start_anchor = line.find("<a");
-    	if (start_anchor != string::npos){
-            	size_t end_anchor = line.find(">", start_anchor);
-            	if(end_anchor != string::npos){
-                    	istringstream anchor_stream(line.substr(start_anchor + 2, end_anchor - start_anchor - 2));
-                    	anchor_stream >> link >> info;
-                    	anchor_stream >> ws;
-                    	if(anchor_stream.eof()){
-                            	v_links_.push_back(link);
-                            	line.replace(start_anchor + 1, end_anchor - start_anchor, info + ">" + "[" + to_string(v_links_.size()) + "]");
-                    	}
-            	}
-    	}
+    v_links_.push_back(link);
+    link = "<" + info + "[" + to_string(v_links_.size()) + "]";
 }
 
