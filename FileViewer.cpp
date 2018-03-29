@@ -56,6 +56,8 @@ void FileViewer::execute_command(char command, bool & done)
             getline(cin, file_name);
             if (!buffer_.open(file_name))
                 error_message_ = "Could not open " + file_name;
+            else
+                buffer_.add_history(file_name);
 
             break;
         }
@@ -64,27 +66,33 @@ void FileViewer::execute_command(char command, bool & done)
             cout << "link number: ";
             int link_number;
             cin >> link_number;
-	    if (link_number > buffer_.link_size() || link_number < 1){
-            error_message_ = "Invalid link number";
-            break;
-	    }
+            while(cin.fail())
+            {
+                cin.clear();
+                cin.ignore(10000, '\n');
+                cout << "Enter a number: ";
+                cin >> link_number;
+            }
+
+            if (link_number > buffer_.link_size() || link_number < 1)
+            {
+                error_message_ = "Invalid link number";
+                break;
+            }
+
             string link = buffer_.link_name(link_number - 1);
             if (!buffer_.open(link))
                 error_message_ = "Could not open link [" + to_string(link_number) + "]";
+            else
+                buffer_.add_history(link);
             break;
         }
 
         case 'b':{
-            history_ = buffer_.get_history();
-            cout << "History: " << to_string(history_.size()) << endl;
-//            for (int i = 0; i< history_.size();i++)
-//            {
-//                cout << "Number: " << i+1 << ":" << history_[i] << endl;
-//            }
-//            cin.get();
-            history_.pop_back();
-            string file_name = history_[history_.size()-1];
-            if(!buffer_.open(file_name))
+            string file_name = buffer_.get_history();
+            if(file_name.empty())
+                error_message_ = "No previous files to access";
+            else if(!buffer_.open(file_name))
                 error_message_ = "Could not open " + file_name;
             break;
         }

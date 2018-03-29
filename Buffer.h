@@ -25,7 +25,7 @@ public:
     const std::string & link_name(const int number) const { return v_links_[number];}
     const int link_size() const { return v_links_.size();}
     void add_history(const std::string & name) { history_.push_back(name);}
-    std::vector<std::string> get_history() { return history_ ;}
+    std::string get_history();
 
 
 private:
@@ -39,6 +39,16 @@ private:
     std::vector <std::string> history_;
 
 };
+
+inline std::string Buffer::get_history()
+{
+    if(history_.size() <= 1)
+            return "";
+    history_.pop_back();
+    std::string last_element = history_[history_.size()-1];
+    return last_element;
+}
+
 
 inline void Buffer::move_to_next_page()
 {

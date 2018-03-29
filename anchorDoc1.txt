@@ -1,0 +1,5 @@
+<a textdoc.txt textdoc> After <br> a <br> few computer science courses, students may start to
+get the feeling that programs can always be written to
+solve any computational problem.  Writing the program may
+be hard work. <br> For example, <a Buffer.cpp yeet> it may involve learning a
+difficult technique. <p> And many hours of debugging.  But

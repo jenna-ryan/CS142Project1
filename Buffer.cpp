@@ -51,16 +51,14 @@ bool Buffer::open(const string & new_file_name)
     if (!file)
         return false;
 
-    add_history(new_file_name);
+    //add_history(new_file_name);
 
     v_lines_.clear();
     v_links_.clear();
     // Note: the vector is cleared only after we know the file
     // opened successfully.
 
-//    string line;
-//    while (getline(file, line))
-//        v_lines_.push_back(line);
+
 ///READS IN INDIVIDUAL WORDS
     string word;
     string word2;
