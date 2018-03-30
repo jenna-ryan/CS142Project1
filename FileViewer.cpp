@@ -114,12 +114,26 @@ void FileViewer::run()
     cout << "Window height? ";
     cin >> window_height_;
     cin.get();  // '\n'
+        while(cin.fail() || window_height_< 1)
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Enter a positive, real number: ";
+            cin >> window_height_;
+        }
     cout << '\n';
     buffer_.set_window_height(window_height_);
 
     cout << "Window length? ";
     cin >> window_length_;
     cin.get();  // '\n'
+        while(cin.fail()||window_length_ < 1)
+        {
+            cin.clear();
+            cin.ignore(10000, '\n');
+            cout << "Enter a positive, real number: ";
+            cin >> window_length_;
+        }
     cout << '\n';
     buffer_.set_window_length(window_length_);
 
